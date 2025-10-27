@@ -1,0 +1,27 @@
+{
+  "name": "video-interview-platform",
+  "version": "1.0.0",
+  "description": "A professional video interview platform with candidate and admin flows",
+  "main": "index.html",
+  "scripts": {
+    "setup": "node setup-demo.js",
+    "start": "http-server -p 8080",
+    "test": "echo \"Open http://localhost:8080/test.html to test setup\""
+  },
+  "keywords": [
+    "video",
+    "interview",
+    "platform",
+    "webrtc",
+    "supabase",
+    "recruitment"
+  ],
+  "author": "Video Interview Platform Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  }
+}

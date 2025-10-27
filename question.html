@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Question - Video Interview Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
+        .video-container { aspect-ratio: 16/9; }
+        .pulse-animation { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .progress-bar { transition: width 0.3s ease; }
+        .countdown { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Interview Question</h1>
+            
+            <!-- Progress Bar -->
+            <div class="max-w-md mx-auto">
+                <div class="flex justify-between text-sm mb-2">
+                    <span>Question <span id="current-question">1</span> of 3</span>
+
+                </div>
+                <div class="w-full bg-white/20 rounded-full h-2">
+                    <div id="progress-bar" class="progress-bar bg-white h-2 rounded-full" style="width: 20%"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+
+                <!-- Question Video -->
+                <div class="glass-effect rounded-2xl p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-center">Question Video</h2>
+                    <div class="video-container mb-4">
+                <video id="question-video" class="w-full h-full rounded-lg" controls>
+                    <source id="question-source" type="video/mp4">
+                    <p>Your browser doesn't support video playback.</p>
+                </video>
+                    </div>
+                    <p class="text-center text-sm opacity-80">Please watch the question carefully</p>
+                </div>
+
+
+                <!-- Recording Section -->
+                <div class="glass-effect rounded-2xl p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-center">Your Response</h2>
+                    
+                    <!-- Video Preview -->
+                    <div class="video-container mb-4">
+                        <video id="response-video" class="w-full h-full rounded-lg bg-black" autoplay muted></video>
+                    </div>
+
+                    <!-- Recording Controls -->
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="flex space-x-4">
+                            <button id="previous-question"
+                             class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                                Previous Question
+                            </button>
+                            <button id="start-recording" 
+                                class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                                Start Recording
+                            </button>
+                            <button id="stop-recording" disabled
+                                class="bg-gray-500 text-white font-semibold py-3 px-6 rounded-lg cursor-not-allowed">
+                                Stop Recording
+                            </button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div id="recording-status" class="text-sm opacity-80">Click "Start Recording" to begin</div>
+                            <div id="recording-timer" class="text-lg font-semibold mt-2 hidden">00:00</div>
+                        </div>
+                    </div>
+
+                    <!-- Recorded Video Preview -->
+                    <div id="preview-section" class="mt-6 hidden">
+                        <h3 class="text-lg font-semibold mb-3 text-center">Preview Your Response</h3>
+                        <div class="video-container mb-4">
+                            <video id="preview-video" class="w-full h-full rounded-lg" controls></video>
+                        </div>
+                        <div class="flex space-x-4 justify-center">
+                            <button id="retake-recording"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                                Retake
+                            </button>
+                            <button id="save-response"
+                                class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                                Save & Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="glass-effect rounded-2xl p-6 text-center">
+                <h3 class="text-lg font-semibold mb-3">Instructions</h3>
+                <ul class="text-sm space-y-2 opacity-90">
+                    <li>• Watch the question video completely before recording</li>
+                    <li>• You can review and re-record your answer before saving</li>
+                    <li>• Click "Save & Next" to proceed to the next question</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/question.js"></script>
+</body>
+</html>
